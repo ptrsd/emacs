@@ -15,6 +15,8 @@
  tab-width 4
  c-basic-offset 4)
 
+(fset `yes-or-no-p `y-or-n-p)
+
 ;; modes
 (electric-indent-mode 0)
 
@@ -44,6 +46,9 @@
 (menu-bar-mode 0)
 (toggle-frame-fullscreen)
 (scroll-bar-mode 0)
+
+(use-package window-numbering
+  :init (window-numbering-mode))
 
 (custom-set-faces '(default ((t (:background "#333333")))))
 
@@ -76,7 +81,7 @@
   :init   (setq projectile-use-git-grep t)
   :config (projectile-global-mode t)
   :bind   (("M-f" . projectile-find-file)
-           ("M-F" . projectile-grep)))
+           ("M-r" . helm-projectile-grep)))
 
 (use-package helm-projectile
   :init (helm-projectile-on))
@@ -117,7 +122,7 @@
 
 ;; powerline
 (use-package powerline
-  :init (powerline-default-theme))
+  :init (powerline-vim-theme))
 
 ;; windmove
 (use-package windmove
@@ -125,7 +130,7 @@
 
 ;; rainbow-delimiters
 (use-package rainbow-delimiters
-  :demand) 
+  :init (rainbow-delimiters-mode)) 
 
 ;; git-gutter
 (use-package git-gutter
@@ -149,11 +154,15 @@
   (sp-pair "[" "]" :wrap "s-[")
   (sp-pair "{" "}" :wrap "C-{")
 
-  (bind-key "C-<left>" nil smartparens-mode-map)
-  (bind-key "C-<right>" nil smartparens-mode-map)
+(bind-key "C-<left>" nil smartparens-mode-map)
+(bind-key "C-<right>" nil smartparens-mode-map)
 
-  (bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
-  (bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map))
+(bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
+(bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map))
+
+;; completions
+(use-package company)
+(global-set-key (kbd "TAB") 'company-complete)
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
@@ -173,8 +182,9 @@
       (beginning-of-buffer (goto-char (point-min))))))
 
 ;; hooks
-(add-hook 'scala-mode-hook
-          (lambda ()
-            (smartparens-mode)
-            (rainbow-delimiters-mode)
-            (scala-mode:goto-start-of-code)))
+(add-hook 'prog-mode-hook 
+  (lambda () 
+    (global-company-mode)
+    (rainbow-delimiters-mode)
+    (smartparens-global-mode)))
+
