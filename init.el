@@ -17,9 +17,6 @@
 
 (fset `yes-or-no-p `y-or-n-p)
 
-;; modes
-(electric-indent-mode 0)
-
 ;; global keybindings
 (setq mac-command-modifier 'super)
 

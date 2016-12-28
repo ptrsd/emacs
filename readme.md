@@ -4,6 +4,14 @@ Cheatsheet
 
 ![Emacs + Tmux](/emacs+tmux.png?raw=true "Emacs + Tmux")
 
+## keys
+Key | Desc
+--- | ---
+`M` | alt
+`C` | control
+`ESC` | escape
+`RET` | enter
+
 ## evil
 Key | Desc
 --- | ---
@@ -11,15 +19,21 @@ Key | Desc
 `i` | insert text before cursor
 `A` | append text at the end of the line
 `o` | begin a new line below the cursor and insert text
+`u` | undo
 `x` | delete character after the cursor
 `dd` | delete line
+`daw` | delete a word
 `D` | delete the characters under the cursor until the end of the line
-`:%s/old/new/g` | replace old with new in all lines
-`u` | undo
 `e` | forward to the end of word
 `b` | backward to the end of word
-`daw` | delete a word
+`y` | copy marked text
+`yy` | copy line
+`p` | paste text after cursor
+`P` | paste text before cursor
 `/pattern` | search
+`:%s/old/new/g` | replace old with new in all lines
+`ESC C-SPC` | escape vi mode and set the mark at point
+`ESC :29 RET` | escape vi mode and go to line 29 
 
 ## emacs
 Key | Desc
@@ -39,11 +53,15 @@ Key | Desc
 `C-x left` | previous buffer
 `C-x right` | next buffer 
 
-## projectile
+## emacs plugins
 Key | Desc
 --- | --- 
 `M-f` | search for a file in a project
 `M-F` | grep in a project
+`TAB` | autocomplete
+`M-/` | undo tree
+`M-1` | switch to window 1
+`M-N` | switch to window N
 
 ## neotree
 Key | Desc
