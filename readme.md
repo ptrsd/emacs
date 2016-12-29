@@ -9,6 +9,7 @@ Key | Desc
 --- | ---
 `M` | alt
 `C` | control
+`S` | shift
 `ESC` | escape
 `RET` | enter
 
@@ -94,3 +95,12 @@ Key | Desc
 `C-c C-r t` | import the type
 `C-c C-r r` | rename the symbol
 `TAB` | autocomplete
+
+## org-mode
+Key | Desc
+--- | ---
+`C-c a a` | show agenda
+`C-c a t` | global todo list
+`C-c C-s` | schedule a task
+`C-c C-t` | mark task as done
+`S-TAB` | toggle overview

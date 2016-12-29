@@ -161,6 +161,13 @@
 (use-package company)
 (global-set-key (kbd "TAB") 'company-complete)
 
+;; org-mode
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-agenda-files (list "~/org/todo.org"))
+(setq org-log-done t)
+
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "<home>") 'back-to-indentation)
