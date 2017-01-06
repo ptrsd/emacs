@@ -98,6 +98,10 @@
 (use-package expand-region)
 (use-package move-text)
 
+(require 'expand-region)
+(global-set-key (kbd "M-e") 'er/expand-region)
+(global-set-key (kbd "M-E") 'er/contract-region)
+
 ;; neotree
  (use-package neotree
   :init (setq neo-smart-open t)
@@ -149,24 +153,12 @@
 
   (sp-pair "(" ")" :wrap "C-(")
   (sp-pair "[" "]" :wrap "s-[")
-  (sp-pair "{" "}" :wrap "C-{")
-
-(bind-key "C-<left>" nil smartparens-mode-map)
-(bind-key "C-<right>" nil smartparens-mode-map)
-
-(bind-key "s-<delete>" 'sp-kill-sexp smartparens-mode-map)
-(bind-key "s-<backspace>" 'sp-backward-kill-sexp smartparens-mode-map))
+  (sp-pair "{" "}" :wrap "C-{"))
 
 ;; completions
 (use-package company)
 (global-set-key (kbd "TAB") 'company-complete)
-
-;; org-mode
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-agenda-files (list "~/org/todo.org"))
-(setq org-log-done t)
+(setq tab-always-indent 'company-complete)
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
