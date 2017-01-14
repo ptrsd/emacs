@@ -49,6 +49,10 @@
 
 (custom-set-faces '(default ((t (:background "#333333")))))
 
+;; magit
+(use-package magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; evil
 (use-package evil 
   :init (evil-mode 1))
@@ -104,8 +108,30 @@
 
 ;; neotree
  (use-package neotree
-  :init (setq neo-smart-open t)
-  :bind ("C-c n" . neotree-toggle))
+  :init (setq neo-smart-open t))
+
+(setq projectile-switch-project-action 'neotree-projectile-action)
+(setq neo-theme 'arrow)
+
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+        (file-name (buffer-file-name)))
+    (neotree-toggle)
+    (if project-dir
+        (if (neo-global--window-exists-p)
+            (progn
+              (neotree-dir project-dir)
+              (neotree-find file-name)))
+              (message "Could not find git project root."))))
+
+(global-set-key (kbd "C-c n") 'neotree-project-dir)
+
+(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 
 ;; elscreen
 (use-package elscreen
@@ -176,6 +202,24 @@
   (lambda () (interactive)
     (condition-case nil (scroll-down)
       (beginning-of-buffer (goto-char (point-min))))))
+
+(defun pbcopy ()
+  (interactive)
+  (call-process-region (point) (mark) "pbcopy")
+  (setq deactivate-mark t))
+
+(defun pbpaste ()
+  (interactive)
+  (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
+
+(defun pbcut ()
+  (interactive)
+  (pbcopy)
+  (delete-region (region-beginning) (region-end)))
+
+(global-set-key (kbd "C-c c") 'pbcopy)
+(global-set-key (kbd "C-c v") 'pbpaste)
+(global-set-key (kbd "C-c x") 'pbcut)
 
 ;; hooks
 (add-hook 'prog-mode-hook 
