@@ -17,8 +17,9 @@
 
 (fset `yes-or-no-p `y-or-n-p)
 
-;; global keybindings
+;; global
 (setq mac-command-modifier 'super)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; the package manager
 (require 'package)
@@ -35,26 +36,36 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;; powerline
+(use-package powerline
+  :init (powerline-default-theme))
+
 ;; ui
-(use-package monokai-theme
-  :init (load-theme 'monokai t))
+(use-package moe-theme
+  :ensure t
+  :config)
+
+(moe-dark)
+(powerline-moe-theme)
+(moe-theme-set-color 'b)
+(setq moe-theme-highlight-buffer-id nil)
+
+(show-paren-mode t)
+(setq show-paren-style 'expression)
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
-(toggle-frame-fullscreen)
 (scroll-bar-mode 0)
 
 (use-package window-numbering
   :init (window-numbering-mode))
-
-(custom-set-faces '(default ((t (:background "#333333")))))
 
 ;; magit
 (use-package magit)
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; evil
-(use-package evil 
+(use-package evil
   :init (evil-mode 1))
 
 (use-package evil-escape
@@ -62,13 +73,15 @@
   :config (evil-escape-mode))
 
 ;; ensime
-(use-package ensime 
-  :ensure t 
+(add-to-list 'exec-path "/usr/local/bin")
+
+(use-package ensime
+  :ensure t
   :pin melpa-stable
   :bind ("M-RET" . ensime-edit-definition))
 
 ;; helm
-(use-package helm) 
+(use-package helm)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
@@ -86,11 +99,6 @@
 
 (use-package helm-projectile
   :init (helm-projectile-on))
-
-;; dashboard
-(use-package dashboard
-  :config
-  (dashboard-setup-startup-hook))
 
 ;; undo
 (use-package undo-tree
@@ -133,23 +141,11 @@
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 
-;; elscreen
-(use-package elscreen
-  :init (elscreen-start)
-  :config (setq elscreen-display-tab nil))
-
-(define-key evil-normal-state-map "\C-zc" 'elscreen-create)
-(define-key evil-normal-state-map "\C-zk" 'elscreen-kill)
-(define-key evil-normal-state-map "gt" 'elscreen-next)
-(define-key evil-normal-state-map "gT" 'elscreen-previous)
-
 ;; which-key
 (use-package which-key
   :init (which-key-mode))
 
-;; powerline
-(use-package powerline
-  :init (powerline-vim-theme))
+(setq which-key-idle-delay 0.5)
 
 ;; windmove
 (use-package windmove
@@ -157,7 +153,7 @@
 
 ;; rainbow-delimiters
 (use-package rainbow-delimiters
-  :init (rainbow-delimiters-mode)) 
+  :init (rainbow-delimiters-mode))
 
 ;; git-gutter
 (use-package git-gutter
@@ -222,9 +218,8 @@
 (global-set-key (kbd "C-c x") 'pbcut)
 
 ;; hooks
-(add-hook 'prog-mode-hook 
-  (lambda () 
+(add-hook 'prog-mode-hook
+  (lambda ()
     (global-company-mode)
     (rainbow-delimiters-mode)
     (smartparens-global-mode)))
-
