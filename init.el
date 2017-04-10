@@ -31,8 +31,8 @@
  package-archive-priorities '(("melpa-stable" . 1)))
 
 (package-initialize)
-(when (not package-archive-contents)
   (package-refresh-contents)
+(when (not package-archive-contents)
   (package-install 'use-package))
 (require 'use-package)
 
@@ -87,6 +87,9 @@
 
 (use-package helm-projectile
   :init (helm-projectile-on))
+
+;; markdown
+(use-package markdown-mode)
 
 ;; undo
 (use-package undo-tree

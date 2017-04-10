@@ -35,6 +35,21 @@ Key | Desc
 `C-x r m` | set
 `C-x r l` | list
 `C-x r b` | jump
+=======
+## marking
+Key | Desc
+--- | ---
+`C-x h` | Marks the entire buffer
+`C-M-h` | Mars the next defun
+`C-M-<SPC>` | Marks the next s-expression
+`C-M-- C-M-<SPC>` | Marks the previous s-expression
+
+## searching
+Key | Desc
+--- | ---
+`C-s` | Begins search
+`C-M-s` | Berins a regexp search
+`C-s C-w` | Search for a word at point
 
 ## evil
 Key | Desc
@@ -76,6 +91,7 @@ Key | Desc
 `C-x k` | kill a buffer
 `C-x left` | previous buffer
 `C-x right` | next buffer
+`C-M-\` | indent region
 
 ## emacs plugins
 Key | Desc
