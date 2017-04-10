@@ -13,6 +13,21 @@ Key | Desc
 `ESC` | escape
 `RET` | enter
 
+## marking
+Key | Desc
+--- | ---
+`C-x h` | Marks the entire buffer
+`C-M-h` | Mars the next defun
+`C-M-<SPC>` | Marks the next s-expression
+`C-M-- C-M-<SPC>` | Marks the previous s-expression
+
+## searching
+Key | Desc
+--- | ---
+`C-s` | Begins search
+`C-M-s` | Berins a regexp search
+`C-s C-w` | Search for a word at point
+
 ## evil
 Key | Desc
 --- | ---
@@ -34,7 +49,7 @@ Key | Desc
 `/pattern` | search
 `:%s/old/new/g` | replace old with new in all lines
 `ESC C-SPC` | escape vi mode and set the mark at point
-`ESC :29 RET` | escape vi mode and go to line 29 
+`ESC :29 RET` | escape vi mode and go to line 29
 
 ## emacs
 Key | Desc
@@ -52,11 +67,12 @@ Key | Desc
 `C-x b` | select another buffer
 `C-x k` | kill a buffer
 `C-x left` | previous buffer
-`C-x right` | next buffer 
+`C-x right` | next buffer
+`C-M-\` | indent region
 
 ## emacs plugins
 Key | Desc
---- | --- 
+--- | ---
 `M-f` | search for a file in a project
 `M-F` | grep in a project
 `TAB` | autocomplete

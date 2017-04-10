@@ -31,8 +31,8 @@
  package-archive-priorities '(("melpa-stable" . 1)))
 
 (package-initialize)
-(when (not package-archive-contents)
   (package-refresh-contents)
+(when (not package-archive-contents)
   (package-install 'use-package))
 (require 'use-package)
 
@@ -47,7 +47,7 @@
 
 (moe-dark)
 (powerline-moe-theme)
-(moe-theme-set-color 'b)
+(moe-theme-set-color 'w/b)
 (setq moe-theme-highlight-buffer-id nil)
 
 (show-paren-mode t)
@@ -99,6 +99,9 @@
 
 (use-package helm-projectile
   :init (helm-projectile-on))
+
+;; markdown
+(use-package markdown-mode)
 
 ;; undo
 (use-package undo-tree
