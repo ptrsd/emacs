@@ -35,7 +35,7 @@ Key | Desc
 `C-x r m` | set
 `C-x r l` | list
 `C-x r b` | jump
-=======
+
 ## marking
 Key | Desc
 --- | ---
@@ -43,6 +43,8 @@ Key | Desc
 `C-M-h` | Mars the next defun
 `C-M-<SPC>` | Marks the next s-expression
 `C-M-- C-M-<SPC>` | Marks the previous s-expression
+`M-e` | expand region
+`M-E` | contract region
 
 ## searching
 Key | Desc

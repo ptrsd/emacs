@@ -17,6 +17,12 @@
 
 (fset `yes-or-no-p `y-or-n-p)
 
+(set-face-attribute 'default nil
+                    :family "Hack"
+                    :height 100
+                    :weight 'normal
+                    :width 'normal)
+
 ;; global
 (setq mac-command-modifier 'super)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -80,13 +86,25 @@
 ;; projectile
 (use-package projectile
   :demand
-  :init   (setq projectile-use-git-grep t)
+  :init (setq projectile-use-git-grep t)
   :config (projectile-global-mode t)
   :bind   (("M-f" . projectile-find-file)
+           ("M-F" . projectile-find-file-in-known-projects)
            ("M-r" . helm-projectile-grep)))
 
 (use-package helm-projectile
-  :init (helm-projectile-on))
+  :init
+  (helm-projectile-on))
+
+(setq projectile-switch-project-action 'helm-projectile-find-file)
+
+;; weather
+(use-package wttrin
+  :ensure t
+  :commands (wttrin)
+  :init
+  (setq wttrin-default-cities '("Sevilla" "Spain"))
+  (setq wttrin-default-accept-language '("Accept-Language" . "en-EN")))
 
 ;; markdown
 (use-package markdown-mode)
@@ -107,10 +125,9 @@
 
 ;; neotree
  (use-package neotree
-  :init (setq neo-smart-open t))
+  :init (setq neo-smart-open t)
+        (setq neo-theme 'arrow))
 
-(setq projectile-switch-project-action 'neotree-projectile-action)
-(setq neo-theme 'arrow)
 
 (defun neotree-project-dir ()
   "Open NeoTree using the git root."
