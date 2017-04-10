@@ -36,22 +36,10 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; powerline
-(use-package powerline
-  :init (powerline-default-theme))
-
 ;; ui
-(use-package moe-theme
+(use-package dracula-theme
   :ensure t
   :config)
-
-(moe-dark)
-(powerline-moe-theme)
-(moe-theme-set-color 'b)
-(setq moe-theme-highlight-buffer-id nil)
-
-(show-paren-mode t)
-(setq show-paren-style 'expression)
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

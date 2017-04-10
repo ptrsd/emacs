@@ -10,8 +10,31 @@ Key | Desc
 `M` | alt
 `C` | control
 `S` | shift
+`s` | super
 `ESC` | escape
 `RET` | enter
+
+## help
+Key | Desc
+--- | ---
+`C-h i` | open manual
+`C-h m` | describe mode
+`C-h f` | describe function
+`C-h k` | describe key
+
+## navigation
+Key | Desc
+--- | ---
+`M-m` | move point to the first non-whitespace character on this line
+`C-M-f` | move forward by s-expression
+`C-M-b` | move backward by s-expression
+
+## bookmarks
+Key | Desc
+--- | ---
+`C-x r m` | set
+`C-x r l` | list
+`C-x r b` | jump
 
 ## evil
 Key | Desc
@@ -34,7 +57,7 @@ Key | Desc
 `/pattern` | search
 `:%s/old/new/g` | replace old with new in all lines
 `ESC C-SPC` | escape vi mode and set the mark at point
-`ESC :29 RET` | escape vi mode and go to line 29 
+`ESC :29 RET` | escape vi mode and go to line 29
 
 ## emacs
 Key | Desc
@@ -52,11 +75,11 @@ Key | Desc
 `C-x b` | select another buffer
 `C-x k` | kill a buffer
 `C-x left` | previous buffer
-`C-x right` | next buffer 
+`C-x right` | next buffer
 
 ## emacs plugins
 Key | Desc
---- | --- 
+--- | ---
 `M-f` | search for a file in a project
 `M-F` | grep in a project
 `TAB` | autocomplete
