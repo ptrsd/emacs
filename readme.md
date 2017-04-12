@@ -26,6 +26,8 @@ Key | Desc
 Key | Desc
 --- | ---
 `M-m` | move point to the first non-whitespace character on this line
+`M-[` | previous buffer
+`M-]` | next buffer
 
 ## bookmarks
 Key | Desc

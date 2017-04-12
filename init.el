@@ -191,9 +191,6 @@
   (sp-pair "{" "}" :wrap "C-{"))
 
 ;; completions
-;;(use-package company)
-;;(global-set-key (kbd "TAB") 'company-complete)
-;;(setq tab-always-indent 'company-complete)
 (use-package company
   :diminish company-mode
   :commands company-mode
@@ -215,6 +212,9 @@
 (global-set-key (kbd "<S-up>") 'move-text-up)
 (global-set-key (kbd "<S-down>") 'move-text-down)
 
+(global-set-key (kbd "M-]") 'next-buffer)
+(global-set-key (kbd "M-[") 'previous-buffer)
+
 (global-set-key [next]
   (lambda () (interactive)
     (condition-case nil (scroll-up)
@@ -224,24 +224,6 @@
   (lambda () (interactive)
     (condition-case nil (scroll-down)
       (beginning-of-buffer (goto-char (point-min))))))
-
-(defun pbcopy ()
-  (interactive)
-  (call-process-region (point) (mark) "pbcopy")
-  (setq deactivate-mark t))
-
-(defun pbpaste ()
-  (interactive)
-  (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
-
-(defun pbcut ()
-  (interactive)
-  (pbcopy)
-  (delete-region (region-beginning) (region-end)))
-
-(global-set-key (kbd "C-c c") 'pbcopy)
-(global-set-key (kbd "C-c v") 'pbpaste)
-(global-set-key (kbd "C-c x") 'pbcut)
 
 ;; hooks
 (add-hook 'prog-mode-hook
