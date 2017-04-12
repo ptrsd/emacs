@@ -26,8 +26,6 @@ Key | Desc
 Key | Desc
 --- | ---
 `M-m` | move point to the first non-whitespace character on this line
-`C-M-f` | move forward by s-expression
-`C-M-b` | move backward by s-expression
 
 ## bookmarks
 Key | Desc
@@ -35,6 +33,14 @@ Key | Desc
 `C-x r m` | set
 `C-x r l` | list
 `C-x r b` | jump
+
+## editing
+Key | Desc
+--- | ---
+`M-q` | Refills the paragraphs
+`C-x C-;` | Comment or uncomment line
+`M-i` | Inserts spaces to next tab stop
+`C-x TAB` | indent region
 
 ## marking
 Key | Desc
@@ -115,14 +121,6 @@ Key | Desc
 `C-c C-d` | delete a file or directory
 `C-c C-r` | rename a file or directory
 `g` | refresh
-
-## elscreen
-Key | Desc
---- | ---
-`C-z c` | create screen
-`C-z k` | kill screen
-`gt` | next screen
-`gT` | previous screen
 
 ## ensime
 Key | Desc
