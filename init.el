@@ -167,6 +167,11 @@
 (use-package git-gutter
   :init (global-git-gutter-mode +1))
 
+;; snippets
+(use-package yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode 1)
+
 ;; smartparentheses
 (use-package smartparens
   :diminish smartparens-mode
@@ -186,9 +191,22 @@
   (sp-pair "{" "}" :wrap "C-{"))
 
 ;; completions
-(use-package company)
-(global-set-key (kbd "TAB") 'company-complete)
-(setq tab-always-indent 'company-complete)
+;;(use-package company)
+;;(global-set-key (kbd "TAB") 'company-complete)
+;;(setq tab-always-indent 'company-complete)
+(use-package company
+  :diminish company-mode
+  :commands company-mode
+  :init
+  (setq
+   company-dabbrev-ignore-case nil
+   company-dabbrev-code-ignore-case nil
+   company-dabbrev-downcase nil
+   company-idle-delay 0
+   company-minimum-prefix-length 3)
+  :config
+  (define-key company-active-map [tab] nil)
+  (define-key company-active-map (kbd "TAB") nil))
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
