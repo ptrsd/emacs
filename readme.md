@@ -25,7 +25,6 @@ Key | Desc
 ## navigation
 Key | Desc
 --- | ---
-`M-m` | move point to the first non-whitespace character on this line
 `M-[` | previous buffer
 `M-]` | next buffer
 
@@ -40,7 +39,6 @@ Key | Desc
 Key | Desc
 --- | ---
 `M-q` | Refills the paragraphs
-`C-x C-;` | Comment or uncomment line
 `M-i` | Inserts spaces to next tab stop
 `C-x TAB` | indent region
 
@@ -48,9 +46,6 @@ Key | Desc
 Key | Desc
 --- | ---
 `C-x h` | Marks the entire buffer
-`C-M-h` | Mars the next defun
-`C-M-<SPC>` | Marks the next s-expression
-`C-M-- C-M-<SPC>` | Marks the previous s-expression
 `M-e` | expand region
 `M-E` | contract region
 
@@ -72,13 +67,29 @@ Key | Desc
 `x` | delete character after the cursor
 `dd` | delete line
 `daw` | delete a word
+`ciw` | change a word
 `D` | delete the characters under the cursor until the end of the line
+`w` | jump to the next word
 `e` | forward to the end of word
 `b` | backward to the end of word
 `y` | copy marked text
 `yy` | copy line
 `p` | paste text after cursor
 `P` | paste text before cursor
+`0` | beginning of a line
+`$` | end of a line
+`^` | first non-blank character
+`*` | find next word
+`#` | find previous word
+`G` | end of file
+`gg` | beginning of a file
+`2G` | go to 2nd line
+`J` | join the current line with the next one
+`M` | move to the middle of the screen
+`L` | move to the bottom of the screen
+`H` | move to the top of the screen
+`{` | jump to the previous paragraphs
+`}` | jump to the next paragraph
 `/pattern` | search
 `:%s/old/new/g` | replace old with new in all lines
 `ESC C-SPC` | escape vi mode and set the mark at point
