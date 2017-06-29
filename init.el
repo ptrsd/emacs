@@ -5,6 +5,7 @@
  make-backup-files nil
  column-number-mode t
  scroll-error-top-bottom t
+ make-backup-files nil
  show-paren-delay 0.5
  use-package-always-ensure t
  sentence-end-double-space nil)
@@ -47,9 +48,15 @@
   :ensure t
   :config)
 
+(use-package moe-theme)
+
+(if (display-graphic-p)
+    (load-theme 'dracula t)
+    (load-theme 'moe-dark t))
+
+(scroll-bar-mode 0)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
-(scroll-bar-mode 0)
 
 (use-package window-numbering
   :init (window-numbering-mode))
@@ -66,6 +73,13 @@
   :diminish evil-escape-mode
   :config (evil-escape-mode))
 
+(define-key evil-normal-state-map (kbd "C-k") (lambda ()
+            (interactive)
+            (evil-scroll-up nil)))
+
+(define-key evil-normal-state-map (kbd "C-j") (lambda ()
+            (interactive)
+            (evil-scroll-down nil)))
 ;; ensime
 (add-to-list 'exec-path "/usr/local/bin")
 
@@ -125,9 +139,9 @@
 
 ;; neotree
  (use-package neotree
-  :init (setq neo-smart-open t)
-        (setq neo-theme 'arrow))
-
+   :init (setq neo-smart-open t)
+         (setq neo-autorefresh nil)
+         (setq neo-theme 'arrow))
 
 (defun neotree-project-dir ()
   "Open NeoTree using the git root."
@@ -231,3 +245,17 @@
     (global-company-mode)
     (rainbow-delimiters-mode)
     (smartparens-global-mode)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (smartparens git-gutter rainbow-delimiters which-key neotree move-text expand-region markdown-mode wttrin helm-projectile projectile helm ensime evil-escape evil magit window-numbering dracula-theme use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
