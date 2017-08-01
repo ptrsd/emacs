@@ -54,7 +54,9 @@
     (load-theme 'dracula t)
     (load-theme 'moe-dark t))
 
-(scroll-bar-mode 0)
+(if (display-graphic-p)
+    (scroll-bar-mode 0))
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 
@@ -245,17 +247,3 @@
     (global-company-mode)
     (rainbow-delimiters-mode)
     (smartparens-global-mode)))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (smartparens git-gutter rainbow-delimiters which-key neotree move-text expand-region markdown-mode wttrin helm-projectile projectile helm ensime evil-escape evil magit window-numbering dracula-theme use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
