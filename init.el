@@ -90,6 +90,9 @@
   :pin melpa-stable
   :bind ("M-RET" . ensime-edit-definition))
 
+;; elm
+(use-package elm-mode)
+
 ;; helm
 (use-package helm)
 
@@ -134,7 +137,7 @@
 
 ;; zoom-window
 (use-package zoom-window
-  :bind ("C-z C-z" . zoom-window-zoom)
+  :bind ("C-x C-z" . zoom-window-zoom))
 
 ;; move-text
 (use-package expand-region)
@@ -246,10 +249,6 @@
   (lambda () (interactive)
     (condition-case nil (scroll-down)
       (beginning-of-buffer (goto-char (point-min))))))
-
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'company-elm))
-(add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
 
 ;; hooks
 (add-hook 'prog-mode-hook
