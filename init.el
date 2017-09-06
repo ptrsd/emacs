@@ -20,7 +20,7 @@
 
 (set-face-attribute 'default nil
                     :family "Hack"
-                    :height 110
+                    :height 100
                     :weight 'normal
                     :width 'normal)
 
@@ -128,6 +128,11 @@
   :diminish undo-tree-mode
   :config (global-undo-tree-mode)
   :bind ("M-/" . undo-tree-visualize))
+
+
+;; zoom-window
+(use-package zoom-window
+  :bind ("C-z C-z" . zoom-window-zoom)
 
 ;; move-text
 (use-package expand-region)
@@ -238,6 +243,10 @@
   (lambda () (interactive)
     (condition-case nil (scroll-down)
       (beginning-of-buffer (goto-char (point-min))))))
+
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-elm))
+(add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
 
 ;; hooks
 (add-hook 'prog-mode-hook

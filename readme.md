@@ -94,6 +94,8 @@ Key | Desc
 `:%s/old/new/g` | replace old with new in all lines
 `ESC C-SPC` | escape vi mode and set the mark at point
 `ESC :29 RET` | escape vi mode and go to line 29
+`C-]` | find tag
+`C-t` | pop find tag
 
 ## emacs
 Key | Desc
@@ -123,6 +125,7 @@ Key | Desc
 `M-/` | undo tree
 `M-1` | switch to window 1
 `M-N` | switch to window N
+`C-z C-z` | toggle zoom window
 
 ## neotree
 Key | Desc
