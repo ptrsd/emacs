@@ -204,6 +204,7 @@
 
   (sp-pair "(" ")" :wrap "C-(")
   (sp-pair "[" "]" :wrap "s-[")
+  (sp-pair "\"" "\"" :wrap "C-\"")
   (sp-pair "{" "}" :wrap "C-{"))
 
 ;; completions
