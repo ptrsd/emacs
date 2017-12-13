@@ -13,8 +13,9 @@
 ;; buffer local variables
 (setq-default
  indent-tabs-mode nil
- tab-width 4
- c-basic-offset 4)
+ tab-width 2
+ js-indent-level 2
+ c-basic-offset 2)
 
 (fset `yes-or-no-p `y-or-n-p)
 
@@ -92,6 +93,9 @@
 
 ;; elm
 (use-package elm-mode)
+
+;; json
+(use-package json-mode)
 
 ;; helm
 (use-package helm)
