@@ -6,6 +6,7 @@
  column-number-mode t
  scroll-error-top-bottom t
  make-backup-files nil
+ auto-save-default nil
  show-paren-delay 0.5
  use-package-always-ensure t
  sentence-end-double-space nil)
@@ -97,6 +98,9 @@
 ;; json
 (use-package json-mode)
 
+;; yaml
+(use-package yaml-mode)
+
 ;; helm
 (use-package helm)
 
@@ -121,14 +125,6 @@
 
 (setq projectile-switch-project-action 'helm-projectile-find-file)
 
-;; weather
-(use-package wttrin
-  :ensure t
-  :commands (wttrin)
-  :init
-  (setq wttrin-default-cities '("Sevilla" "Spain"))
-  (setq wttrin-default-accept-language '("Accept-Language" . "en-EN")))
-
 ;; markdown
 (use-package markdown-mode)
 
@@ -137,7 +133,6 @@
   :diminish undo-tree-mode
   :config (global-undo-tree-mode)
   :bind ("M-/" . undo-tree-visualize))
-
 
 ;; zoom-window
 (use-package zoom-window
@@ -199,6 +194,10 @@
 (use-package yasnippet)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
+
+;; server
+(load "server")
+(unless (server-running-p) (server-start))
 
 ;; smartparentheses
 (use-package smartparens
