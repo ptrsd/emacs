@@ -65,6 +65,13 @@
 (use-package window-numbering
   :init (window-numbering-mode))
 
+;; flycheck
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; magit
 (use-package magit)
 (global-set-key (kbd "C-x g") 'magit-status)
@@ -84,13 +91,33 @@
 (define-key evil-normal-state-map (kbd "C-j") (lambda ()
             (interactive)
             (evil-scroll-down nil)))
-;; ensime
-(add-to-list 'exec-path "/usr/local/bin")
 
-(use-package ensime
-  :ensure t
-  :pin melpa-stable
-  :bind ("M-RET" . ensime-edit-definition))
+;; go
+(use-package go-mode :ensure t)
+(use-package go-guru :ensure t)
+(use-package gotest :ensure t)
+(use-package go-projectile :ensure t)
+
+(defun custom-go-mode-hook ()
+  (setq gofmt-command "goimports")
+  (go-guru-hl-identifier-mode)
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (auto-complete-mode 1)
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v"))
+  (local-set-key (kbd "C-c C-c") 'go-test-current-project)
+  (local-set-key (kbd "M-p") 'compile)
+  (local-set-key (kbd "M-P") 'recompile)
+  (local-set-key (kbd "M-*") 'pop-tag-mark))
+(add-hook 'go-mode-hook 'custom-go-mode-hook)
+
+(evil-define-key 'normal go-mode-map (kbd "M-.") 'godef-jump)
+
+;; exec-path-from-shell
+(use-package exec-path-from-shell
+  :init (exec-path-from-shell-initialize)
+        (exec-path-from-shell-copy-env "GOPATH"))
 
 ;; elm
 (use-package elm-mode)
@@ -109,6 +136,12 @@
 (global-set-key (kbd "C-c C-m") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; editorconfig
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;; projectile
 (use-package projectile
@@ -219,19 +252,25 @@
   (sp-pair "{" "}" :wrap "C-{"))
 
 ;; completions
-(use-package company
-  :diminish company-mode
-  :commands company-mode
-  :init
-  (setq
-   company-dabbrev-ignore-case nil
-   company-dabbrev-code-ignore-case nil
-   company-dabbrev-downcase nil
-   company-idle-delay 0
-   company-minimum-prefix-length 3)
-  :config
-  (define-key company-active-map [tab] nil)
-  (define-key company-active-map (kbd "TAB") nil))
+ (use-package company
+   :diminish company-mode
+   :commands company-mode
+   :init
+   (setq
+    company-dabbrev-ignore-case nil
+    company-dabbrev-code-ignore-case nil
+    company-dabbrev-downcase nil
+    company-idle-delay 0
+    company-minimum-prefix-length 2)
+   :config
+   (define-key company-active-map [tab] nil)
+   (define-key company-active-map (kbd "TAB") nil))
+
+(use-package go-company :ensure t)
+
+(add-hook 'go-mode-hook (lambda ()
+                          (company-mode)
+                          (set (make-local-variable 'company-backends) '(company-go))))
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
