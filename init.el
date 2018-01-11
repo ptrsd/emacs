@@ -50,6 +50,8 @@
   :ensure t
   :config)
 
+(linum-relative-global-mode)
+
 (use-package moe-theme)
 
 (if (display-graphic-p)
@@ -96,7 +98,6 @@
 (use-package go-mode :ensure t)
 (use-package go-guru :ensure t)
 (use-package gotest :ensure t)
-;;(use-package go-projectile :ensure t)
 
 (defun custom-go-mode-hook ()
   (setq gofmt-command "goimports")
@@ -115,10 +116,9 @@
 (evil-define-key 'normal go-mode-map (kbd "M-.") 'godef-jump)
 
 ;; exec-path-from-shell
-(use-package exec-path-from-shell
-  :init (exec-path-from-shell-initialize)
-        (exec-path-from-shell-copy-env "GOPATH"))
-
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GOPATH"))
 ;; elm
 (use-package elm-mode)
 
@@ -266,7 +266,6 @@
    (define-key company-active-map [tab] nil)
    (define-key company-active-map (kbd "TAB") nil))
 
-(use-package go-company :ensure t)
 
 (add-hook 'go-mode-hook (lambda ()
                           (company-mode)
@@ -292,9 +291,24 @@
     (condition-case nil (scroll-down)
       (beginning-of-buffer (goto-char (point-min))))))
 
+
 ;; hooks
 (add-hook 'prog-mode-hook
   (lambda ()
     (global-company-mode)
     (rainbow-delimiters-mode)
     (smartparens-global-mode)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (linum-relative nlinum zoom-window yasnippet yaml-mode window-numbering which-key use-package smartparens rainbow-delimiters neotree move-text moe-theme markdown-mode magit json-mode helm-projectile gotest go-guru git-gutter flycheck expand-region exec-path-from-shell evil-escape elm-mode editorconfig dracula-theme company-go))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
